@@ -1,10 +1,12 @@
 
-import {getClientes} from "../services/clienteService.js";
+import {getClientes} from "../../services/clienteService.js";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-const ClientesLista = () => {
+const Cliente = () => {
 
     const [clientes, setClientes] = useState([]);
+    const navigator = useNavigate();
 
     useEffect(() => {
         getClientes().then(response => {
@@ -14,9 +16,14 @@ const ClientesLista = () => {
         })
     }, []);
 
+    function addCliente() {
+        navigator("/clientes/add")
+    }
+
     return (
         <div className={"container"}>
             <h1>Clientes</h1>
+            <button className="btn btn-primary" onClick={addCliente}>Nuevo Cliente</button>
             <table className="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -37,4 +44,4 @@ const ClientesLista = () => {
     )
 }
 
-export default ClientesLista;
+export default Cliente;
