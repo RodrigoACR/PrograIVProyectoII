@@ -3,11 +3,13 @@ package org.example.backend.logic.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
 @Table(name = "cliente")
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idreceptor", nullable = false)
     private Integer id;
 
@@ -92,4 +94,16 @@ public class Cliente {
         this.idemisor = idemisor;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", tipoIdentificacion='" + tipoIdentificacion + '\'' +
+                ", numeroIdentificacion='" + numeroIdentificacion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", correoelectronico='" + correoelectronico + '\'' +
+                ", idemisor=" + idemisor +
+                '}';
+    }
 }

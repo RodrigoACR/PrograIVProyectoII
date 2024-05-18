@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-const REST_API_URL = "http://localhost:8080/api/clienteslista";
+const REST_API_URL = "http://localhost:8080/api/cliente";
 
-export const clientesLista = () =>
-{
-    return axios.get(REST_API_URL);
-}
+export const getClientes = () => axios.get(REST_API_URL);
