@@ -1,7 +1,9 @@
 package org.example.backend.logic;
 
 import org.example.backend.data.repository.ClienteRepository;
+import org.example.backend.data.repository.EmisorRepository;
 import org.example.backend.logic.model.Cliente;
+import org.example.backend.logic.model.Emisor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -29,6 +31,9 @@ public class Service
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private EmisorRepository emisorRepository;
+
     //------------------------------------------------------------------------------------------------------------------
     // Constructor
     //------------------------------------------------------------------------------------------------------------------
@@ -38,9 +43,22 @@ public class Service
     }
 
     //------------------------------------------------------------------------------------------------------------------
+    // Emisores
+    //------------------------------------------------------------------------------------------------------------------
+    public Emisor getEmisor(Integer id)
+    {
+        return emisorRepository.findEmisorById(id).orElse(null);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
     // Clientes
     //------------------------------------------------------------------------------------------------------------------
-    public void addCliente(Cliente cliente){clienteRepository.save(cliente);}
+    public void addCliente(Cliente cliente)
+    {
+        System.out.println("Service-AddCliente: " + cliente.toString());
+        clienteRepository.save(cliente);
+    }
+
     public List<Cliente> getClientes()
     {
         List<Cliente> clientes = clienteRepository.findAll();

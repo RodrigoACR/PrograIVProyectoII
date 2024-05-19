@@ -23,12 +23,12 @@ public class Facturamaestro {
     private Instant fecha;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idemisor")
-    private Emisor idemisor;
+    @JoinColumn(name = "id_emisor")
+    private Emisor idEmisor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idreceptor")
-    private Cliente idreceptor;
+    @JoinColumn(name = "id_receptor")
+    private Cliente idReceptor;
 
     public Long getId() {
         return id;
@@ -54,20 +54,20 @@ public class Facturamaestro {
         this.fecha = fecha;
     }
 
-    public Emisor getIdemisor() {
-        return idemisor;
+    public Emisor getIdEmisor() {
+        return idEmisor;
     }
 
-    public void setIdemisor(Emisor idemisor) {
-        this.idemisor = idemisor;
+    public void setIdEmisor(Emisor idEmisor) {
+        this.idEmisor = idEmisor;
     }
 
-    public Cliente getIdreceptor() {
-        return idreceptor;
+    public Cliente getIdReceptor() {
+        return idReceptor;
     }
 
-    public void setIdreceptor(Cliente idreceptor) {
-        this.idreceptor = idreceptor;
+    public void setIdReceptor(Cliente idReceptor) {
+        this.idReceptor = idReceptor;
     }
 
 }

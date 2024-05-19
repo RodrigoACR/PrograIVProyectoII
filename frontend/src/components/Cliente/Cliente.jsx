@@ -1,4 +1,3 @@
-
 import {getClientes} from "../../services/clienteService.js";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
@@ -29,6 +28,7 @@ const Cliente = () => {
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Cedula</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,11 +36,12 @@ const Cliente = () => {
                         <tr key={cliente.id}>
                             <td>{cliente.id}</td>
                             <td>{cliente.nombre}</td>
+                            <td>{cliente.numeroIdentificacion}</td>
                         </tr>
                     )}
                 </tbody>
             </table>
-            </div>
+        </div>
     )
 }
 

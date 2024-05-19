@@ -3,14 +3,13 @@ package org.example.backend.logic.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
 @Table(name = "cliente")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idreceptor", nullable = false)
+    @Column(name = "id_receptor", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Size(max = 45)
@@ -19,11 +18,11 @@ public class Cliente {
 
     @Size(max = 16)
     @NotNull
-    @Column(name = "TipoIdentificacion", nullable = false, length = 16)
+    @Column(name = "tipo_identificacion", nullable = false, length = 16)
     private String tipoIdentificacion;
 
     @Size(max = 12)
-    @Column(name = "NumeroIdentificacion", length = 12)
+    @Column(name = "numero_identificacion", length = 12)
     private String numeroIdentificacion;
 
     @Size(max = 12)
@@ -31,12 +30,12 @@ public class Cliente {
     private String telefono;
 
     @Size(max = 128)
-    @Column(name = "correoelectronico", length = 128)
-    private String correoelectronico;
+    @Column(name = "correo_electronico", length = 128)
+    private String correoElectronico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idemisor")
-    private Emisor idemisor;
+    @JoinColumn(name = "id_emisor")
+    private Emisor idEmisor;
 
     public Integer getId() {
         return id;
@@ -78,20 +77,20 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getCorreoelectronico() {
-        return correoelectronico;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setCorreoelectronico(String correoelectronico) {
-        this.correoelectronico = correoelectronico;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
-    public Emisor getIdemisor() {
-        return idemisor;
+    public Emisor getIdEmisor() {
+        return idEmisor;
     }
 
-    public void setIdemisor(Emisor idemisor) {
-        this.idemisor = idemisor;
+    public void setIdEmisor(Emisor idEmisor) {
+        this.idEmisor = idEmisor;
     }
 
     @Override
@@ -102,8 +101,8 @@ public class Cliente {
                 ", tipoIdentificacion='" + tipoIdentificacion + '\'' +
                 ", numeroIdentificacion='" + numeroIdentificacion + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", correoelectronico='" + correoelectronico + '\'' +
-                ", idemisor=" + idemisor +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", idEmisor=" + idEmisor +
                 '}';
     }
 }

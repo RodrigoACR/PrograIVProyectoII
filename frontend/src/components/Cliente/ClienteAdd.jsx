@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {addCliente} from "../../services/clienteService.js";
+import {useNavigate} from "react-router-dom";
 
 const ClienteAdd = () => {
 
@@ -7,7 +9,9 @@ const ClienteAdd = () => {
     const [numeroIdentificacion, setNumeroIdentificacion] = useState('')
     const [telefono, setTelefono] = useState('')
     const [correoelectronico, setCorreoelectronico] = useState('')
-    const [idemisor, setIdemisor] = useState('')
+    const [idEmisor, setIdEmisor] = useState('')
+
+    const navigator = useNavigate();
 
     function guardarCliente(e) {
         e.preventDefault();
@@ -17,11 +21,13 @@ const ClienteAdd = () => {
             tipoIdentificacion,
             numeroIdentificacion,
             telefono,
-            correoelectronico,
-            idemisor
+            correoelectronico
         }
 
-        console.log(cliente);
+        addCliente(cliente).then(response => {
+            console.log(response.data);
+            navigator("/clientes");
+        })
     }
 
     return (
@@ -58,11 +64,6 @@ const ClienteAdd = () => {
                             <label htmlFor="correoelectronico" className={"form-label"}>Correo Electrónico</label>
                             <input type="text" id="correoelectronico" className={"form-control"}
                                    value={correoelectronico} onChange={(e) => setCorreoelectronico(e.target.value)}/>
-                        </div>
-                        <div className={"mb-3"}>
-                            <label htmlFor="idemisor" className={"form-label"}>ID Emisor</label>
-                            <input type="text" id="idemisor" className={"form-control"} value={idemisor}
-                                   onChange={(e) => setIdemisor(e.target.value)}/>
                         </div>
                         <button className={"btn btn-success"} onClick={guardarCliente}>Guardar</button>
                     </form>

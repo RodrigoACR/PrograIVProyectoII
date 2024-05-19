@@ -15,8 +15,8 @@ public class Producto {
     private Actividad idactividad;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idemisor")
-    private Emisor idemisor;
+    @JoinColumn(name = "id_emisor")
+    private Emisor idEmisor;
 
     @Size(max = 45)
     @Column(name = "descripcion", length = 45)
@@ -45,12 +45,12 @@ public class Producto {
         this.idactividad = idactividad;
     }
 
-    public Emisor getIdemisor() {
-        return idemisor;
+    public Emisor getIdEmisor() {
+        return idEmisor;
     }
 
-    public void setIdemisor(Emisor idemisor) {
-        this.idemisor = idemisor;
+    public void setIdEmisor(Emisor idEmisor) {
+        this.idEmisor = idEmisor;
     }
 
     public String getDescripcion() {

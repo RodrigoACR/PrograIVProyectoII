@@ -10,11 +10,11 @@ import jakarta.validation.constraints.Size;
 @Table(name = "emisoractividad")
 public class Emisoractividad {
     @Id
-    @Column(name = "idemisoractividad", nullable = false)
+    @Column(name = "id_emisoractividad", nullable = false)
     private Integer id;
 
-    @Column(name = "idemisor")
-    private Integer idemisor;
+    @Column(name = "id_emisor")
+    private Integer idEmisor;
 
     @Size(max = 6)
     @Column(name = "idactividad", length = 6)
@@ -28,12 +28,12 @@ public class Emisoractividad {
         this.id = id;
     }
 
-    public Integer getIdemisor() {
-        return idemisor;
+    public Integer getIdEmisor() {
+        return idEmisor;
     }
 
-    public void setIdemisor(Integer idemisor) {
-        this.idemisor = idemisor;
+    public void setIdEmisor(Integer idEmisor) {
+        this.idEmisor = idEmisor;
     }
 
     public String getIdactividad() {

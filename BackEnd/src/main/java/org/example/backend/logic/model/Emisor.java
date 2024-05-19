@@ -1,5 +1,6 @@
 package org.example.backend.logic.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,50 +9,58 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "emisor")
 public class Emisor {
     @Id
-    @Column(name = "idEmisor", nullable = false)
+    @Column(name = "id_emisor", nullable = false)
     private Integer id;
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "Nombre", nullable = false, length = 45)
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
 
     @Size(max = 16)
     @NotNull
-    @Column(name = "TipoIdentificacion", nullable = false, length = 16)
+    @Column(name = "tipo_identificacion", nullable = false, length = 16)
     private String tipoIdentificacion;
 
     @Size(max = 12)
     @NotNull
-    @Column(name = "NumeroIdentificacion", nullable = false, length = 12)
+    @Column(name = "numero_identificacion", nullable = false, length = 12)
     private String numeroIdentificacion;
 
     @Size(max = 45)
     @NotNull
-    @Column(name = "NombreComercial", nullable = false, length = 45)
+    @Column(name = "nombre_comercial", nullable = false, length = 45)
     private String nombreComercial;
 
     @Size(max = 60)
     @NotNull
-    @Column(name = "Direccion", nullable = false, length = 60)
+    @Column(name = "direccion", nullable = false, length = 60)
     private String direccion;
 
     @Size(max = 12)
     @NotNull
-    @Column(name = "Telefono", nullable = false, length = 12)
+    @Column(name = "telefono", nullable = false, length = 12)
     private String telefono;
 
     @Size(max = 128)
     @NotNull
-    @Column(name = "`CorreoElectrónico`", nullable = false, length = 128)
-    private String correoElectrónico;
+    @Column(name = "correo_electronico", nullable = false, length = 128)
+    private String correoElectronico;
 
     @Size(max = 64)
     @Column(name = "clave", length = 64)
     private String clave;
+
+    public Emisor(int i) {
+    }
+
+    public Emisor() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -109,12 +118,12 @@ public class Emisor {
         this.telefono = telefono;
     }
 
-    public String getCorreoElectrónico() {
-        return correoElectrónico;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    public void setCorreoElectrónico(String correoElectrónico) {
-        this.correoElectrónico = correoElectrónico;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
     public String getClave() {
@@ -125,4 +134,18 @@ public class Emisor {
         this.clave = clave;
     }
 
+    @Override
+    public String toString() {
+        return "Emisor{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", tipoIdentificacion='" + tipoIdentificacion + '\'' +
+                ", numeroIdentificacion='" + numeroIdentificacion + '\'' +
+                ", nombreComercial='" + nombreComercial + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", clave='" + clave + '\'' +
+                '}';
+    }
 }
