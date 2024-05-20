@@ -1,11 +1,14 @@
 package org.example.backend.logic;
 
+import org.example.backend.data.repository.ActividadRepository;
 import org.example.backend.data.repository.ClienteRepository;
 import org.example.backend.data.repository.EmisorRepository;
+import org.example.backend.data.repository.ProductoRepository;
+import org.example.backend.logic.model.Actividad;
 import org.example.backend.logic.model.Cliente;
 import org.example.backend.logic.model.Emisor;
+import org.example.backend.logic.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -33,7 +36,13 @@ public class Service
     private ClienteRepository clienteRepository;
 
     @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
     private EmisorRepository emisorRepository;
+
+    @Autowired
+    private ActividadRepository actividadRepository;
 
     //------------------------------------------------------------------------------------------------------------------
     // Constructor
@@ -41,6 +50,14 @@ public class Service
     public Service()
     {
         System.out.println("Service created");
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Emisores
+    //------------------------------------------------------------------------------------------------------------------
+    public Actividad getActividad(Integer id)
+    {
+        return actividadRepository.findActividadById(id).orElse(null);
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -76,5 +93,32 @@ public class Service
     {
         System.out.println("Service-DeleteCliente: " + id);
         clienteRepository.deleteClienteById(id);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Productos
+    //------------------------------------------------------------------------------------------------------------------
+    public void addProducto(Producto producto)
+    {
+        System.out.println("Service-AddProducto: " + producto.toString());
+        productoRepository.save(producto);
+    }
+
+    public Producto getProducto(Integer id)
+    {
+        return productoRepository.findProductoById(id).orElse(null);
+    }
+
+    public List<Producto> getProductos()
+    {
+        List<Producto> productos = productoRepository.findAll();
+        System.out.println("Service-Productos: " + productos.size());
+        return productos;
+    }
+
+    public void deleteProducto(Integer id)
+    {
+        System.out.println("Service-DeleteProducto: " + id);
+        productoRepository.deleteProductoById(id);
     }
 }

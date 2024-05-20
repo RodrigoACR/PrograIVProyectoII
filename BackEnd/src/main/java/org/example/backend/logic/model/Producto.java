@@ -77,4 +77,15 @@ public class Producto {
         this.unidadmedida = unidadmedida;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + id +
+                ", idactividad=" + idactividad +
+                ", idEmisor=" + idEmisor +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", unidadmedida='" + unidadmedida + '\'' +
+                '}';
+    }
 }

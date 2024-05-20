@@ -34,4 +34,11 @@ public class Actividad {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return "Actividad{" +
+                "idactividad='" + idactividad + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
+    }
 }
