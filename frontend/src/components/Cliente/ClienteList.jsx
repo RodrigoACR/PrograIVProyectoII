@@ -46,6 +46,26 @@ const ClienteList = () => {
         })
     }
 
+    function formatCedula(tipoCedula, cedula) {
+        if (tipoCedula === "Fisica" && cedula.length === 9) {
+            return `${cedula.slice(0, 1)}-${cedula.slice(1,5)}-${cedula.slice(5)}`;
+        }
+        if(tipoCedula === "Juridica" && cedula.length === 10)
+        {
+            return `${cedula.slice(0, 1)}-${cedula.slice(1,4)}-${cedula.slice(5)}`;
+        }
+
+        return cedula;
+    }
+
+    function formatTelefono(telefono) {
+        if (telefono.length === 8) {
+            return `${telefono.slice(0, 4)}-${telefono.slice(4)}`;
+        }
+
+        return telefono;
+    }
+
     //------------------------------------------------------------------------------------------------------------------
     // HTML
     //------------------------------------------------------------------------------------------------------------------
@@ -72,8 +92,8 @@ const ClienteList = () => {
                             <td>{cliente.id}</td>
                             <td>{cliente.nombre}</td>
                             <td>{cliente.tipoIdentificacion}</td>
-                            <td>{cliente.numeroIdentificacion}</td>
-                            <td>{cliente.telefono}</td>
+                            <td className={"text-center"}>{formatCedula(cliente.tipoIdentificacion, cliente.numeroIdentificacion)}</td>
+                            <td className={"text-center"}>{formatTelefono(cliente.telefono)}</td>
                             <td>{cliente.correoElectronico}</td>
                             <td>
                                 <div className={"text-center"}>

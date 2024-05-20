@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {addCliente, getCliente} from "../../services/clienteService.js";
 import {useNavigate, useParams} from "react-router-dom";
+import InputMask from "react-input-mask";
 
 const Cliente = () => {
 
@@ -25,8 +26,15 @@ const Cliente = () => {
         correoElectronico: ''
     })
 
+    //Expresión regular para validar correo electrónico
+    const validateEmail = (email) => {
+        // Expresión regular para validar correo electrónico
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
     //------------------------------------------------------------------------------------------------------------------
-    //
+    // USE EFFECT
     //------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
         if(id) {
@@ -63,7 +71,9 @@ const Cliente = () => {
             addCliente(cliente).then(response => {
                 console.log(response.data);
                 navigator("/clientes");
-            })
+            }).catch((error) => {
+                console.error("Error al guardar el cliente: ", error);
+            });
         }
     }
 
@@ -72,6 +82,7 @@ const Cliente = () => {
 
         const errosCopy = {...errors};
 
+        // Validaciones Nombre
         if (nombre.trim()){ errosCopy.nombre = "";}
         else
         {
@@ -79,12 +90,14 @@ const Cliente = () => {
             valid = false;
         }
 
+        // Validaciones Tipo de Identificación
         if (tipoIdentificacion.trim()){ errosCopy.tipoIdentificacion = "";}
         else
         {
             errosCopy.tipoIdentificacion = "El tipo de identificación es obligatorio";
             valid = false;
         }
+
 
         if (numeroIdentificacion.trim()){ errosCopy.numeroIdentificacion = "";}
         else
@@ -93,6 +106,7 @@ const Cliente = () => {
             valid = false;
         }
 
+        // Validaciones de Telefono
         if (telefono.trim()){ errosCopy.telefono = "";}
         else
         {
@@ -100,15 +114,20 @@ const Cliente = () => {
             valid = false;
         }
 
+        // Validaciones del Email
         if (correoElectronico.trim()){ errosCopy.correoElectronico = "";}
         else
         {
             errosCopy.correoElectronico = "El correo electrónico es obligatorio";
             valid = false;
         }
+        if (validateEmail(correoElectronico)) {errosCopy.correoElectronico="";}
+        else {
+            errosCopy.correoElectronico = "El correo electrónico no es valido";
+            valid = false;
+        }
 
         setErrors(errosCopy);
-
         return valid;
     }
 
@@ -148,20 +167,20 @@ const Cliente = () => {
                         <div className={"mb-3"}>
                             <label htmlFor="numeroIdentificacion" className={"form-label"}>Número de
                                 Identificación</label>
-                            <input type="text" id="numeroIdentificacion" disabled={isDisabled} className={`form-control ${errors.numeroIdentificacion ? 'is-invalid':''}`}
-                                   value={numeroIdentificacion}
+                            <InputMask type="text" id="numeroIdentificacion" disabled={isDisabled} className={`form-control ${errors.numeroIdentificacion ? 'is-invalid':''}`}
+                                   value={numeroIdentificacion} mask={tipoIdentificacion === 'Juridica' ? '9-999-999999' : '9-9999-9999'}
                                    onChange={(e) => setNumeroIdentificacion(e.target.value)}/>
                             {errors.numeroIdentificacion && <div className={"invalid-feedback"}>{errors.numeroIdentificacion}</div>}
                         </div>
                         <div className={"mb-3"}>
                             <label htmlFor="telefono" className={"form-label"}>Teléfono</label>
-                            <input type="text" id="telefono" value={telefono} disabled={isDisabled} className={`form-control ${errors.telefono ? 'is-invalid':''}`}
-                                   onChange={(e) => setTelefono(e.target.value)}/>
+                            <InputMask type="text" id="telefono" value={telefono} disabled={isDisabled} mask={"9999-9999"} className={`form-control ${errors.telefono ? 'is-invalid':''}`}
+                                       onChange={(e) => setTelefono(e.target.value)}></InputMask>
                             {errors.telefono && <div className={"invalid-feedback"}>{errors.telefono}</div>}
                         </div>
                         <div className={"mb-3"}>
                             <label htmlFor="correoelectronico" className={"form-label"}>Correo Electrónico</label>
-                            <input type="text" id="correoelectronico" value={correoElectronico} disabled={isDisabled} className={`form-control ${errors.correoElectronico ? 'is-invalid':''}`}
+                            <input type="email" id="correoelectronico" value={correoElectronico} disabled={isDisabled} placeholder={"ejemplo@micorreo.com"} required className={`form-control ${errors.correoElectronico ? 'is-invalid':''}`}
                                    onChange={(e) => setCorreoElectronico(e.target.value)}/>
                             {errors.correoElectronico && <div className={"invalid-feedback"}>{errors.correoElectronico}</div>}
                         </div>

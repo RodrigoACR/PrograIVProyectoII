@@ -28,6 +28,9 @@ public class ClienteController
     public void addCliente(@RequestBody Cliente cliente)
     {
         cliente.setIdEmisor(service.getEmisor(1));
+        cliente.setTelefono(cliente.getTelefono().replace("-", ""));
+        cliente.setNumeroIdentificacion(cliente.getNumeroIdentificacion().replace("-", ""));
+
         System.out.println("Controller-AddCliente: " + cliente.toString());
         service.addCliente(cliente);
     }
