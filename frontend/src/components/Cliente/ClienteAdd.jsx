@@ -8,8 +8,7 @@ const ClienteAdd = () => {
     const [tipoIdentificacion, setTipoIdentificacion] = useState('')
     const [numeroIdentificacion, setNumeroIdentificacion] = useState('')
     const [telefono, setTelefono] = useState('')
-    const [correoelectronico, setCorreoelectronico] = useState('')
-    const [idEmisor, setIdEmisor] = useState('')
+    const [correoElectronico, setCorreoElectronico] = useState('')
 
     const navigator = useNavigate();
 
@@ -21,7 +20,7 @@ const ClienteAdd = () => {
             tipoIdentificacion,
             numeroIdentificacion,
             telefono,
-            correoelectronico
+            correoElectronico
         }
 
         addCliente(cliente).then(response => {
@@ -63,7 +62,7 @@ const ClienteAdd = () => {
                         <div className={"mb-3"}>
                             <label htmlFor="correoelectronico" className={"form-label"}>Correo Electrónico</label>
                             <input type="text" id="correoelectronico" className={"form-control"}
-                                   value={correoelectronico} onChange={(e) => setCorreoelectronico(e.target.value)}/>
+                                   value={correoElectronico} onChange={(e) => setCorreoElectronico(e.target.value)}/>
                         </div>
                         <button className={"btn btn-success"} onClick={guardarCliente}>Guardar</button>
                     </form>

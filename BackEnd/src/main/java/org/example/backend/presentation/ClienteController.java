@@ -3,8 +3,8 @@ package org.example.backend.presentation;
 import jakarta.annotation.security.PermitAll;
 import org.example.backend.logic.Service;
 import org.example.backend.logic.model.Cliente;
-import org.example.backend.logic.model.Emisor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,9 +37,15 @@ public class ClienteController
     {
         List<Cliente> clientes = service.getClientes();
         System.out.println("Controller-Clientes: " + clientes.size());
-        System.out.println("Controller-Clientes: " + clientes.get(0).toString());
-        System.out.println("Controller-Clientes: " + clientes.get(1).toString());
 
         return clientes;
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteCliente(@PathVariable("id") Integer id)
+    {
+        System.out.println("Controller-DeleteCliente: " + id);
+        service.deleteCliente(id);
+        return ResponseEntity.ok("Cliente eliminado");
     }
 }

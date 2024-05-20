@@ -63,7 +63,12 @@ public class Service
     {
         List<Cliente> clientes = clienteRepository.findAll();
         System.out.println("Service-Clientes: " + clientes.size());
-        System.out.println("Service-Clientes: " + clientes.get(0).getNombre());
         return clientes;
+    }
+
+    public void deleteCliente(Integer id)
+    {
+        System.out.println("Service-DeleteCliente: " + id);
+        clienteRepository.deleteClienteById(id);
     }
 }
