@@ -32,6 +32,12 @@ public class ClienteController
         service.addCliente(cliente);
     }
 
+    @GetMapping("{id}")
+    public Cliente getClienteById(@PathVariable("id") Integer id)
+    {
+        return service.getCliente(id);
+    }
+
     @GetMapping
     public List<Cliente> getClientes()
     {

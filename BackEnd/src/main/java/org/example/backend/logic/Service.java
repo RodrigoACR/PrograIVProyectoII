@@ -5,6 +5,7 @@ import org.example.backend.data.repository.EmisorRepository;
 import org.example.backend.logic.model.Cliente;
 import org.example.backend.logic.model.Emisor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -57,6 +58,11 @@ public class Service
     {
         System.out.println("Service-AddCliente: " + cliente.toString());
         clienteRepository.save(cliente);
+    }
+
+    public Cliente getCliente(Integer id)
+    {
+        return clienteRepository.findClienteById(id).orElse(null);
     }
 
     public List<Cliente> getClientes()

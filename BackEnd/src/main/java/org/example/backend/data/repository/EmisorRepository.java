@@ -11,6 +11,9 @@ import java.util.Optional;
 @Repository
 public interface EmisorRepository extends JpaRepository<Emisor, String>
 {
+    //------------------------------------------------------------------------------------------------------------------
+    // Find by Id
+    //------------------------------------------------------------------------------------------------------------------
     @Query("SELECT e FROM Emisor e WHERE e.id = :id")
     Optional<Emisor> findEmisorById(@Param("id") Integer id);
 }

@@ -5,7 +5,7 @@ const Header = () => {
                 <nav className={"navbar navbar-dark bg-primary"}>
                     <a href="/">Facturas</a>
                     <a href="/">Productos</a>
-                    <a href="/">Clienes</a>
+                    <a href="/clientes">Clienes</a>
                     <a href="/">Salir</a>
                 </nav>
             </header>
