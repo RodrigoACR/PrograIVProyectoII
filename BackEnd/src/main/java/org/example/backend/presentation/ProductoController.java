@@ -38,7 +38,7 @@ public class ProductoController
     }
 
     @GetMapping
-    public List<Producto> getClientes()
+    public List<Producto> getProductos()
     {
         List<Producto> productos = service.getProductos();
         System.out.println("Controller-Productos: " + productos.size());

@@ -8,7 +8,7 @@ const Header = () => {
                         <div className={"navbar-collapse collapse show"}>
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link active" href="/facturas">Facturas
+                                    <a className="nav-link" href="/facturas">Facturas
                                         <span className="visually-hidden">(current)</span>
                                     </a>
                                 </li>
