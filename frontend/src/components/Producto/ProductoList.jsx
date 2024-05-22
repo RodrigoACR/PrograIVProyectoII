@@ -52,7 +52,7 @@ const ProductoList = () => {
 
     return (
         <div className={"container"}>
-            <h1 className={"text-center text-primary fw-bold p-4"}>Clientes</h1>
+            <h1 className={"text-center text-primary fw-bold p-4"}>Productos</h1>
             <button className="btn btn-primary mb-1" onClick={addProducto}>Nuevo Producto</button>
             <table className="table table-striped table-bordered table-hover">
                 <thead>

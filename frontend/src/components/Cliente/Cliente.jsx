@@ -61,6 +61,15 @@ const Cliente = () => {
         }
     }
 
+    function mostrarBotonGuardar()
+    {
+        if (id) {
+            return null;
+        } else {
+            return <button className={"btn btn-primary me-2"} onClick={guardarCliente}>Guardar</button>;
+        }
+    }
+
     function guardarCliente(e) {
         e.preventDefault();
 
@@ -184,7 +193,7 @@ const Cliente = () => {
                                    onChange={(e) => setCorreoElectronico(e.target.value)}/>
                             {errors.correoElectronico && <div className={"invalid-feedback"}>{errors.correoElectronico}</div>}
                         </div>
-                        <button className={"btn btn-primary me-2"} onClick={guardarCliente}>Guardar</button>
+                        {mostrarBotonGuardar()}
                         <button className={"btn btn-secondary me-2"} onClick={volver}>Volver</button>
                     </form>
                 </div>

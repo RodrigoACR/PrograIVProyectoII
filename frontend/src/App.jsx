@@ -7,6 +7,7 @@ import ProductoList from "./components/Producto/ProductoList.jsx";
 import Footer from "./components/Footer.jsx";
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Producto from "./components/Producto/Producto.jsx";
 
 function App() {
     return (<>
@@ -21,6 +22,8 @@ function App() {
                     <Route path="/clientes/view/:id" element={<Cliente/>}></Route>
 
                     <Route path="/productos" element={<ProductoList/>}></Route>
+                    <Route path="/productos/add" element={<Producto/>}></Route>
+                    <Route path="/productos/view/:id" element={<Producto/>}></Route>
                 </Routes>
                 <Footer/>
             </BrowserRouter>
